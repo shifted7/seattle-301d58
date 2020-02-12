@@ -1,0 +1,9 @@
+to make an upstream:
+
+1. fork the original repo
+2. `git remote add upstream url-of-original-repo`
+3. check to see if it worked
+  `git remote -v`
+4. to pull new content from the original repo:
+  `git pull upstream master`
+

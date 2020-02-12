@@ -1,0 +1,19 @@
+section{
+  border: 2px solid red;
+  color: white;
+  background-color: orange;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+@media(min-width: 450px){
+  section{
+    background-color: yellow;
+  }
+
+  section:first-child{
+    float: left;
+    width: 20%;
+  }
+}

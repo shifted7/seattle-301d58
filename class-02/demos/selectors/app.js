@@ -12,7 +12,7 @@ $('#form').submit((event) => {
 	console.log('form submitted')
 })
 
-// non-ansync code needs to go in here
+// non-ansync code needs to go in here to wait for the page to be ready before it can run
 $().ready(
   console.log( "ready!" )
 );

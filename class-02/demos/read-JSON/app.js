@@ -1,41 +1,41 @@
 // GOAL: render each dog and their info to the index page
   // call a render method on each dog instance
 
-const dogArray = ['dogie'];
+$.ajax('/data.json', {method: 'GET', dataType: 'JSON'})
+	.then(bananas => {
+    bananas.forEach(dog => {
+      new Dog(dog).render();
+    })
+  })
 
-function Dog(dogObj){
-  this.name = dogObj.name;
-  this.image_url = dogObj.image_url;
-  this.hobbies = dogObj.hobbies;
 
+// copy the template 
+// fill the template with each object instance
+// render that to the page
+let dogArray = [];
+
+function Dog(obj){
+  this.name = obj.name;
+  this.image_url=obj.image_url;
+  this.hobbies = obj.hobbies;
   dogArray.push(this);
 }
 
 Dog.prototype.render = function(){
-  // make a template
+  // select all the html in the template
   const myTemplate = $('#dog-template').html();
 
-  // make a new section
+  // make a new section 
   const $newSection = $('<section></section>');
-
-  // put the template html into my new section
+  // fill that new section with the template html
   $newSection.html(myTemplate);
-
-  // find the h2 and fill it with the name
+  // find the h2, and assign it to the name
   $newSection.find('h2').text(this.name);
-
-  // find the img and fill the src and alt
+  // find the image and assign it to the image_url
   $newSection.find('img').attr('src', this.image_url);
-  $newSection.find('img').attr('alt', this.name);
-
-  // find the p tag and fill with hobbies
+  // find the p and assign it to the hobbies
   $newSection.find('p').text(this.hobbies);
 
+  // append it to the main
   $('main').append($newSection);
 }
-
-$.get('data.json', data => {
-  data.forEach(dog => {
-    new Dog(dog).render();
-  })
-})
