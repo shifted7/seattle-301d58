@@ -1,0 +1,29 @@
+html{
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+main{
+  display: grid;
+  grid-template-columns: 140px 1fr 140px;
+  height: calc(100% - 240px);
+  
+}
+
+#left{
+  order: 1;
+  height: 100%;
+}
+
+#main{
+  order: 2;
+  height: 100%;
+}
+
+#right{
+  order: 3;
+  height: 100%;
+}
