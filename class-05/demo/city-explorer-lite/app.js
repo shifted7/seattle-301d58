@@ -1,38 +1,33 @@
 'use strict';
 
-// {
-//   "time": 1567792089082,
-//   "summary": "Foggy in the morning."
-// },
-const weatherStuff = [];
+// render the weather data to the page
 
-function Weather(obj) {
-  this.time = new Date(obj.time);
-  this.forecast = obj.summary;
-
-  weatherStuff.push(this);
-}
-
-Weather.prototype.render = function () {
-  let source = $('#weather-results-template').html();
-  let template = Handlebars.compile(source);
-  return template(this);
-};
-
-const ajaxSettings = {
-  method: 'get',
-  dataType: 'json'
-};
-
-$.ajax('city-weather-data.json', ajaxSettings)
-  .then(weather => {
-    weather.data.forEach(day => {
-      $('#weather-container').append(new Weather(day).render());
-    });
+// 1. use AJAX to get the weather objects
+    // loop through them and run each one through a constructor function
+$.ajax('./city-weather-data.json', {method:'GET', dataType:'JSON'})
+  .then(banana => {
+    console.log(banana)
+    banana.data.forEach((day, i, array) => {
+      new Weather(day).render();
+    })
   });
 
+// 2. a constructor function
+    // based off of the weather objects
 
+let weatherData = [];
 
-// render using handlebars
-// append to the page
+function Weather(obj){
+  this.time = new Date(obj.time).toDateString();
+  this.forecast = obj.summary;
+  weatherData.push(this);
+}
+  
+// 3. a prototype function to compile and render handlebars 
+    // append it to the page
+Weather.prototype.render = function(){
+  let template = $('#weather-results-template').html();
+  let compile = Handlebars.compile(template);
 
+  $('#weather-container').append(compile(this));
+}
