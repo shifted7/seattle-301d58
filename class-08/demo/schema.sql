@@ -1,3 +1,5 @@
+
+
 DROP TABLE IF EXISTS people;
 
 CREATE TABLE people (
@@ -5,3 +7,7 @@ CREATE TABLE people (
     first_name VARCHAR(255),
     last_name VARCHAR(255)
 );
+
+INSERT INTO people (first_name, last_name) VALUES ('Carrington', 'Beard');
+
+SELECT * FROM people;
