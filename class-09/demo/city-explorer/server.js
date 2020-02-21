@@ -7,22 +7,18 @@ require('dotenv').config();
 const cors = require('cors');
 app.use(cors());
 
+// libraries
+const client = require('./lib/client');
+const handleLocation = require('./lib/handleLocation');
+
 const PORT = process.env.PORT || 3001;
 
 const superagent = require('superagent');
 
-app.get('/location', (request, response) => {
-  let city = request.query.city;
-  let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.GEOCODE_API_KEY}&q=${city}&format=json`;
+app.get('/location', handleLocation)
+app.get('/weather', handleWeather)
 
-  superagent.get(url)
-    .then(superagentResults => {
-      let location = new City(city, superagentResults.body[0])
-      response.send(location);
-    })
-})
-
-app.get('/weather', (request, response) => {
+function handleWeather(request, response){
   let locationObject = request.query;
   console.log(locationObject)
 
@@ -38,7 +34,8 @@ app.get('/weather', (request, response) => {
       // loop over the array
       // send in each object to the constructor
     })
-})
+}
+
 
 app.get('/trails', (request, response) => {
   let { 
@@ -54,12 +51,6 @@ app.get('/trails', (request, response) => {
     })
 })
 
-function City(city, obj){
-  this.search_query = city;
-  this.formatted_query = obj.display_name;
-  this.latitude = obj.lat;
-  this.longitude = obj.lon;
-}
 
 function Weather(obj){
   this.time = new Date(obj.time*1000).toDateString();
@@ -79,6 +70,9 @@ function Trail(obj){
   this.condition_time = obj.conditionDate.slice(11,19);
 }
 
-app.listen(PORT, () => {
-  console.log(`listening on ${PORT}`)
-})
+client.connect()
+  .then(
+    app.listen(PORT, () => {
+      console.log(`listening on ${PORT}`)
+    })
+  )
