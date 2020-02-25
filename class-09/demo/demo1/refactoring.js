@@ -10,11 +10,10 @@ let person = new Person('Fred', 51);
 
 // bad code -- references the same thing over and over
 function sayName(person) {
-  if(person.age >= 50){
-    person.getName().toUpperCase();
-  } else{
-    person.getName().toLowerCase();
-  }
+  let name = person.getName();
+
+  return person.age >= 50 ? name.toUpperCase() : name.toLowerCase();
+
 }
 
 console.log(sayName(person));
