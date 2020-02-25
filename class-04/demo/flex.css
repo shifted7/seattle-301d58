@@ -1,0 +1,16 @@
+main{
+  display: flex;
+  height: 600px;
+}
+
+#left{
+  order:1;
+}
+
+#main{
+  order:2;
+}
+
+#right{
+  order: 3;
+}

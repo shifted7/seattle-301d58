@@ -1,0 +1,14 @@
+/* start with mobile first */
+
+*{
+  box-sizing: border-box;
+}
+
+#header, #left, #right, #main, #footer{
+  border: 1px solid black;
+  height: 120px;
+  line-height: 120px;
+  width: 100%;
+  background-color: lightblue;
+  text-align: center;
+}

@@ -1,0 +1,18 @@
+#left{
+  width: 200px;
+  height: 600px;
+  float: left;
+  line-height: 600px;
+}
+
+#right{
+  width: 200px;
+  height: 600px;
+  float: right;
+  line-height: 600px;
+}
+
+#main{
+  height: 600px;
+  line-height: 600px;
+}
