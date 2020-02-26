@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>To-Do List</title>
+
+  </head>
+  <body>
+    <main>
+    <header>
+      <h1>My To-Do List</h1>
+        <nav class="navigation">
+          <ul>
+            <li><a href="/">View All Tasks</a></li>
+            <li><a href="/add">Add a New Task</a></li>
+          </ul>
+        </nav>
+
+    </header>
+      <section class="task-view container">
+        <ul>
+        <% taskArray.forEach(task => { %>
+          <li><%= task.title %></li>
+          <li><%= task.description %></li>
+          <li><%= task.status %></li>
+          <a href='/tasks/<%= task.id %>'>more details</a>
+        <% }) %>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
+
+<!-- { id: 1,
+  title: 'vaccuuummming',
+  description: 'clean the house',
+  contact: 'anthony',
+  status: 'not done',
+  category: 'housework',
+  due: 2020-02-25T08:00:00.000Z } -->

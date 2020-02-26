@@ -8,6 +8,7 @@ const app = express();
 require('ejs');
 const superagent = require('superagent');
 
+// tells us to look in the views folder
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
